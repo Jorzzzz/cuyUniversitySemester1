@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SESI 6 CUY UNIVERSITY DARK MODE</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a onclick="reRender()" id="home">HOME</a>
+        <a onclick="darkMode()" id="mode">MODE - DARK</a>
+        <a onclick="beraniMode()" id="beranimode">MODE - BERANI</a>
+      </nav>
+      <h1>CUY UNIVERSITY SESI 6 DARK MODE</h1>
+      <p class="info" id="info"></p>
+    </div>
+
+    <script>
+      let body = document.body;
+      let info = document.getElementById("info");
+      let mode = document.getElementById("mode");
+      let home = document.getElementById("home");
+
+      const darkLimit = 5;
+      const beraniLimit = 5;
+      let darkCounter = 0;
+      let beraniCounter = 0;
+      let darkReaminingLeft;
+      let beraniReaminingLeft;
+
+      function darkMode() {
+        if (darkReaminingLeft == 1) {
+          info.textContent = "JATAH FITUR DARKMODE ANDA SUDAH HABIS";
+          mode.style.display = "none";
+          home.textContent = "Restart";
+          return;
+        }
+
+        darkCounter += 1;
+        darkReaminingLeft = darkLimit - darkCounter;
+
+        if (darkReaminingLeft == 4) {
+          mode.textContent = "MODE - LIGHT";
+        }
+        if (darkReaminingLeft == 3) {
+          mode.textContent = "MODE - DARK";
+        }
+        if (darkReaminingLeft == 2) {
+          mode.textContent = "MODE - LIGHT";
+        }
+        if (darkReaminingLeft == 1) {
+          mode.textContent = "MODE - DARK";
+        }
+
+        // render ke info elemen
+        info.textContent = `Darkmode dipakai ${darkCounter}x, tersisa ${darkReaminingLeft}`;
+
+        body.classList.toggle("dark");
+      }
+
+      let beranimode = document.getElementById("beranimode");
+
+      function beraniMode() {
+        if (beraniReaminingLeft == 1) {
+          info.textContent = "JATAH FITUR BERANI MODE ANDA SUDAH HABIS";
+          beranimode.style.display = "none";
+          home.textContent = "Restart";
+          return;
+        }
+
+        beraniCounter += 1;
+        beraniReaminingLeft = beraniLimit - beraniCounter;
+
+        if (beraniReaminingLeft == 4) {
+          beranimode.textContent = "MODE - LIGHT";
+        }
+        if (beraniReaminingLeft == 3) {
+          beranimode.textContent = "MODE - BERANI";
+        }
+        if (beraniReaminingLeft == 2) {
+          beranimode.textContent = "MODE - LIGHT";
+        }
+        if (beraniReaminingLeft == 1) {
+          beranimode.textContent = "MODE - BERANI";
+        }
+
+        info.textContent = `Berani mode dipakai ${beraniCounter}x, tersisa ${beraniReaminingLeft}`;
+        body.classList.toggle("berani");
+      }
+      function reRender() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
